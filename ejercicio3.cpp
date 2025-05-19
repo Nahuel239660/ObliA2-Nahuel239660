@@ -1,12 +1,16 @@
-#include <cassert>
-#include <string>
+#include "tads/HeapSorter.h"
 #include <iostream>
-#include <limits>
+#include <vector>
 
-using namespace std;
+int main() {
+    int N;
+    std::cin >> N;
 
-int main()
-{
-    // TODO
+    std::vector<int> nums(N);
+    for (int i = 0; i < N; ++i) std::cin >> nums[i];
+
+    HeapSorter::sort(nums);
+
+    for (int x : nums) std::cout << x << std::endl;
     return 0;
 }

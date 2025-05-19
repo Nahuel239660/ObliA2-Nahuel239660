@@ -1,12 +1,19 @@
-#include <cassert>
-#include <string>
 #include <iostream>
-#include <limits>
+#include "tads/GraphCycleDetector.h"
 
-using namespace std;
+int main() {
+    int V, E;
+    std::cin >> V >> E;
 
-int main()
-{
-    // TODO
+    GraphCycleDetector g(V);
+
+    for (int i = 0; i < E; ++i) {
+        int from, to;
+        std::cin >> from >> to;
+        g.addEdge(from, to);
+    }
+
+    std::cout << (g.hasCycle() ? 1 : 0) << std::endl;
+
     return 0;
 }
