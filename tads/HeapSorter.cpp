@@ -1,6 +1,14 @@
 #include "HeapSorter.h"
 
-void heapifyDown(std::vector<int>& arr, int n, int i) {
+// Función auxiliar para intercambiar elementos
+void swap(int& a, int& b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+// Función heapify para mantener la propiedad del heap
+void heapifyDown(int* arr, int n, int i) {
     int largest = i;
     int l = 2*i + 1;
     int r = 2*i + 2;
@@ -9,23 +17,25 @@ void heapifyDown(std::vector<int>& arr, int n, int i) {
     if (r < n && arr[r] > arr[largest]) largest = r;
 
     if (largest != i) {
-        std::swap(arr[i], arr[largest]);
+        swap(arr[i], arr[largest]);
         heapifyDown(arr, n, largest);
     }
 }
 
-void buildHeap(std::vector<int>& arr) {
-    int n = arr.size();
+// Construir el heap desde el array
+void buildHeap(int* arr, int n) {
     for (int i = n / 2 - 1; i >= 0; --i) {
         heapifyDown(arr, n, i);
     }
 }
 
-void HeapSorter::sort(std::vector<int>& arr) {
-    int n = arr.size();
-    buildHeap(arr);
+void HeapSorter::sort(int* arr, int n) {
+    // Construir el heap
+    buildHeap(arr, n);
+    
+    // Extraer elementos del heap uno por uno
     for (int i = n - 1; i >= 0; --i) {
-        std::swap(arr[0], arr[i]);
+        swap(arr[0], arr[i]);
         heapifyDown(arr, i, 0);
     }
 }

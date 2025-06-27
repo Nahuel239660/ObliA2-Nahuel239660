@@ -13,7 +13,7 @@ int main() {
         g.addEdge(from, to);
     }
 
-    std::cout << (g.hasCycle() ? 1 : 0) << std::endl;
+    std::cout << (g.hasCycle() ? 1 : 0);
 
     return 0;
 }

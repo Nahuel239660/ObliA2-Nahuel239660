@@ -15,21 +15,28 @@ int main() {
 
     int N;
     std::cin >> N;
-    std::vector<int> sources(N);
+    
+    // Array dinámico para los vértices origen
+    int* sources = new int[N];
     for (int i = 0; i < N; ++i) {
         std::cin >> sources[i];
     }
 
-    for (int u : sources) {
-        std::vector<int> dist = g.dijkstra(u);
+    for (int i = 0; i < N; ++i) {
+        int u = sources[i];
+        int* dist = g.dijkstra(u);
+        
         for (int v = 1; v <= g.getVertexCount(); ++v) {
-            if (v == u || dist[v] == std::numeric_limits<int>::max()) {
+            if (v == u || dist[v] == 2147483647) {
                 std::cout << -1 << std::endl;
             } else {
                 std::cout << dist[v] << std::endl;
             }
         }
+        
+        delete[] dist;
     }
 
+    delete[] sources;
     return 0;
 }

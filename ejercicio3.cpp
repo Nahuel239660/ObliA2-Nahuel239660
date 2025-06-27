@@ -1,16 +1,27 @@
-#include "tads/HeapSorter.h"
 #include <iostream>
-#include <vector>
+#include "tads/HeapSorter.h"
+#include "tads/HeapSorter.cpp"
 
 int main() {
     int N;
+    // Leer la cantidad de números
     std::cin >> N;
 
-    std::vector<int> nums(N);
-    for (int i = 0; i < N; ++i) std::cin >> nums[i];
+    // Crear array dinámico para los números
+    int* nums = new int[N];
+    for (int i = 0; i < N; ++i) {
+        std::cin >> nums[i];
+    }
 
-    HeapSorter::sort(nums);
+    // Ordenar usando heapsort
+    HeapSorter::sort(nums, N);
 
-    for (int x : nums) std::cout << x << std::endl;
+    // Imprimir los números ordenados
+    for (int i = 0; i < N; ++i) {
+        std::cout << nums[i] << "\r\n";
+    }
+
+    // Liberar memoria
+    delete[] nums;
     return 0;
 }
